@@ -1,0 +1,37 @@
+server_name: "synapse.up.railway.app"
+
+pid_file: "/data/homeserver.pid"
+
+listeners:
+  - port: 8008
+    type: http
+    tls: false
+    bind_addresses: ['0.0.0.0']
+    resources:
+      - names: [client, federation]
+
+database:
+  name: sqlite3
+  args:
+    database: /data/homeserver.db
+
+log_config: "/data/homeserver.log.config"
+
+media_store_path: "/data/media_store"
+uploads_path: "/data/uploads"
+
+registration_shared_secret: "dhinesh@18092005"
+
+enable_registration: true
+
+report_stats: true
+
+macaroon_secret_key: "8df33f64b8d9dcb556fd34d10db1d199e23ad7b486bde4086de6c9cf44d2f210"
+form_secret: "8df33f64b8d9dcb556fd34d10db1d199e23ad7b486bde4086de6c9cf44d2f210"
+
+signing_key_path: "/data/your-signing-key.pem"
+trusted_key_servers:
+  - server_name: "matrix.org"
+
+# Optional: disable captcha for easier testing
+enable_registration_without_verification: true
